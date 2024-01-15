@@ -13,9 +13,10 @@ function App() {
         <SearchPage />
         {/* 배너 */}
         <Banner />
+        {/* 영화 */}
+        <Movie />
         {/* Trending */}
         <TrendingPage />
-        <Movie />
       </Layout>
     </div>
   );

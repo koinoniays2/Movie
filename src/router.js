@@ -12,7 +12,7 @@ const router = createBrowserRouter([
       element: <Outlet />, // 중첩 라우팅
       children: [ // 중첩 라우팅
         {
-          path: "/", //메인 페이지
+          path: "/", // 루트 페이지
           element: <App />
         },
         {

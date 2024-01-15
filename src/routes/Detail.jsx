@@ -58,31 +58,51 @@ export default function Detail() {
     return (
         <Layout>
             <div className="w-full flex flex-col items-center">
-                <article className="w-full">
-                    <div className="w-[50%] px-12 py-3 my-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
+                <article className="w-full h-[600px] flex flex-col items-center">
+                    {/* 띠 */}
+                    <div className="w-[1300px] px-12 py-3 mt-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
                         <p>영화소개</p>
                     </div>
-                    <div className="flex px-12 py-4">
-                        {lists.poster_path && (
-                            <img src={`https://image.tmdb.org/t/p/w200${lists.poster_path}`} alt="포스터" />
-                        )}
-                        <div className="px-3 space-y-4 text-[#823f12]">
-                            <h1 className="text-3xl font-bold">{lists.title}</h1>
-                            <p className=""><b>장르</b><br />{(lists.genres || []).map((item) => (
-                                <span key={item.id}>{item.name} </span>
-                            ))}</p>
-                            <p><b>줄거리</b><br /> {lists.overview}</p>
+                    {/* 소개 컨테이너 */}
+                    <div className="relative w-full h-full flex justify-center">
+                        {/* 백그라운드 이미지 */}
+                        <div className="absolute top-0 left-0 w-full h-full">
+                            <img
+                                className="w-full h-full object-cover"
+                                src={`https://image.tmdb.org/t/p/original${lists?.backdrop_path}`}
+                                alt="backimage"
+                            />
                         </div>
+                        {/* 필터 이미지 */}
+                        <section className="absolute top-0 left-0 w-full h-full bg-gray-900/80 flex justify-center">
+                            <div className="w-[1300px] h-full flex">
+                                {/* 포스터 */}
+                                {lists.poster_path && (
+                                    <img className="w-[20%] object-contain" 
+                                    src={`https://image.tmdb.org/t/p/original${lists.poster_path}`} alt="포스터" />
+                                )}
+                                {/* 영화 제목, 줄거리 */}
+                                <div className="px-3 h-full flex flex-col justify-center space-y-4 text-[#9BB2C0]">
+                                    <h1 className="text-3xl font-bold">{lists.title}</h1>
+                                    <span>개봉일: {lists?.release_date}</span>
+                                    <p className=""><b>장르</b><br />{(lists.genres || []).map((item) => (
+                                        <span key={item.id}>{item.name} </span>
+                                    ))}</p>
+                                    <p><b>줄거리</b><br /> {lists.overview}</p>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </article>
-                <article className="w-full h-[600px] flex flex-col overflow-hidden">
-                    <div className="w-[50%] px-12 py-3 my-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
+                <article className="w-full h-[700px] flex flex-col items-center overflow-hidden">
+                    <div className="w-[1300px] px-12 py-3 my-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
                         <p>출연진</p>
                     </div>
+                    <div className="w-full h-[600px]">
                     <Slider {...settings}>
                         {people.map((item, index) => (
                             <article key={index} className="w-full flex justify-center mb-10">
-                                <div className="flex flex-col items-center">
+                                <div className="flex flex-col items-center mb-8">
                                     {item.profile_path && <img className="h-[200px]"
                                         src={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
                                         alt="출연진"
@@ -93,6 +113,7 @@ export default function Detail() {
                             </article>
                         ))}
                     </Slider>
+                    </div>
                 </article>
             </div>
         </Layout>
