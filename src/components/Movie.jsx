@@ -38,22 +38,22 @@ export default function Movie() {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: 5,
     autoplay: true,
     autoplaySpeed: 2000,
   };
   return (
     <div className="w-full flex justify-center">
-      <div className="w-[1300px] h-[400px] pt-20">
+      <div className="w-[1300px] pt-10">
         {/* 타이틀 */}
         <div className="flex">
-          <h2 className="px-4 py-2 font-semibold text-[24px] text-[#823f12]">Movie</h2>
+          <h2 className="px-4 font-bold text-[24px] text-[#823f12]">Movie</h2>
           {/* 탭바 */}
           <div className="border-2 border-[#823f12] rounded-full">
             {tabs.map((tab) => (
               <button key={tab.id} onClick={() => { setActiveTab(tab.id); }}
                 className={`${activeTab === tab.id ? "text-[#fcd985]" : "text-[#823f12]"}
-                relative rounded-full px-6 py-3 text-xl font-semibold`}>
+                relative rounded-full px-6 py-2 text-xl font-semibold`}>
                 {activeTab === tab.id && (
                 <motion.span layoutId="movie-bubble" transition={{type: "spring", bounce: 0.1, duration: 0.5}}
                 className="absolute top-0 left-0 w-full h-full bg-[#823f12] rounded-full -z-10" />
@@ -64,17 +64,17 @@ export default function Movie() {
           </div>
         </div>
         {/* 리스트 */}
-        <div className="w-full h-[350px] flex flex-col justify-center">
+        <div className="w-full h-[40vh] pt-9">
           <Slider {...settings}>
             {lists.map((item, index) => (
               <article key={index} className="w-full flex justify-center">
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center px-2">
                   <Link to={{pathname: `/detail/${item.id}`, state: { movieId: item.id }}}>
                     <img className=""
-                    src={`https://image.tmdb.org/t/p/w200${item.backdrop_path}`}
+                    src={`https://image.tmdb.org/t/p/w300${item.backdrop_path}`}
                     alt="이미지"
                   /></Link>
-                  <p className="font-bold text-center text-lg">{item.title}</p>
+                  <p className="font-bold text-center text-[1rem]">{item.title}</p>
                   <p className="text-ml text-gray-500"><b>개봉일</b> : {item.release_date}</p>
                 </div>
               </article>

@@ -3,7 +3,7 @@ import { FaBell, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default function NavPage() {
-  return (
+    return (
     <div className="w-full h-[60px] bg-[#fcd985] flex justify-center">
         {/* 중앙정렬된 네비게이션 컨테이너 */}
         <div className="max-w-[1300px] w-full h-full flex justify-between px-8">

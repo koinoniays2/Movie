@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import Movie from "./components/Movie";
 import SearchPage from "./components/SearchPage";
 import TrendingPage from "./components/TrendingPage";
+import TVSeries from "./components/TVSeries";
 
 function App() {
   return (
@@ -13,10 +14,12 @@ function App() {
         <SearchPage />
         {/* 배너 */}
         <Banner />
-        {/* 영화 */}
-        <Movie />
         {/* Trending */}
         <TrendingPage />
+        {/* 영화 */}
+        <Movie />
+        {/* TV */}
+        <TVSeries />
       </Layout>
     </div>
   );
