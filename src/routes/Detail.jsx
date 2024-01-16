@@ -64,6 +64,7 @@ export default function Detail() {
       };
     return (
         <Layout>
+            {/* 로딩이미지 */}
             {isLoading ? 
             <div className="flex flex-col items-center justify-center py-16">
             <ClimbingBoxLoader
@@ -87,7 +88,7 @@ export default function Detail() {
                         <div className="absolute top-0 left-0 w-full h-full">
                             <img
                                 className="w-full h-full object-cover"
-                                src={`https://image.tmdb.org/t/p/original${lists?.backdrop_path}`}
+                                src={lists.poster_path ? `https://image.tmdb.org/t/p/original${lists.poster_path}` : "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?q=80&w=1948&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
                                 alt="backimage"
                             />
                         </div>
@@ -97,7 +98,7 @@ export default function Detail() {
                                 {/* 포스터 */}
                                 {lists.poster_path && (
                                     <img className="w-[20%] object-contain" 
-                                    src={`https://image.tmdb.org/t/p/original${lists?.poster_path}`} alt="포스터" />
+                                    src={lists.backdrop_path ? `https://image.tmdb.org/t/p/original${lists.backdrop_path}` : "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?q=80&w=1948&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt="포스터" />
                                 )}
                                 {/* 영화 제목, 줄거리 */}
                                 <div className="px-3 h-full flex flex-col justify-center space-y-4 text-[#9BB2C0]">
@@ -122,7 +123,7 @@ export default function Detail() {
                             <article key={index} className="w-full flex justify-center mb-10">
                                 <div className="flex flex-col items-center mb-8">
                                     {item.profile_path && <img className="h-[200px]"
-                                        src={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
+                                        src={`https://image.tmdb.org/t/p/w200${item?.profile_path}`}
                                         alt="출연진"
                                     /> }
                                     <p className="font-bold text-center text-lg"><b>배우</b> : {item.name}</p>
