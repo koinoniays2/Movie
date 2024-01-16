@@ -31,33 +31,11 @@ export default function Detail() {
         }
     }, [tvId]);
 
-    // 출연진
-    // const [people, setPeople] = useState([]);
-    // useEffect(() => {
-    //     const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KR`;
-    //     const options = {
-    //         method: 'GET',
-    //         headers: {
-    //             accept: 'application/json',
-    //             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWNhODU3NDBjOWVlYzc4ZTU1ZTQ2NDA1MWE4NTRjNiIsInN1YiI6IjY1OWNhMTg3NTVjMWY0MDFhNDZlMzMxNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V7UIZD9fGetrKMwieqk-VeRqr2hl3tDlLO_VwMHDvC4'
-    //         }
-    //     };
-    //     setIsLoading(true);
-    //     fetch(url, options)
-    //         .then(res => res.json())
-    //         .then(json => {
-    //             setPeople(json.cast);
-    //             // console.log(json.cast)
-    //         })
-    //         .catch(err => console.error('error:' + err));
-    //     setIsLoading(false);
-    // }, [movieId])
-
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: (lists.seasons || []).length >= 5 ? 5 : (lists.seasons || []).length,
         slidesToScroll: 5,
         autoplay: true,
         autoplaySpeed: 2000,
