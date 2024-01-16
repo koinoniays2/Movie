@@ -47,7 +47,7 @@ export default function Movie() {
             <div className="w-[1300px] pt-10">
                 {/* 타이틀 */}
                 <div className="flex">
-                    <h2 className="px-4 font-bold text-[24px] text-[#823f12]">Movie</h2>
+                    <h2 className="px-4 font-bold text-[24px] text-[#823f12]">TV</h2>
                     {/* 탭바 */}
                     <div className="border-2 border-[#823f12] rounded-full">
                         {tabs.map((tab) => (
