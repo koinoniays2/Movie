@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout"
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
+import { ClimbingBoxLoader } from "react-spinners";
 
 export default function Detail() {
     const { movieId } = useParams();
     const [lists, setLists] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         if (movieId) {
             const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
@@ -16,6 +19,7 @@ export default function Detail() {
                     Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWNhODU3NDBjOWVlYzc4ZTU1ZTQ2NDA1MWE4NTRjNiIsInN1YiI6IjY1OWNhMTg3NTVjMWY0MDFhNDZlMzMxNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V7UIZD9fGetrKMwieqk-VeRqr2hl3tDlLO_VwMHDvC4",
                 },
             };
+            setIsLoading(true);
             fetch(url, options)
                 .then((res) => res.json())
                 .then((json) => {
@@ -23,6 +27,7 @@ export default function Detail() {
                     // console.log(json);
                 })
                 .catch((err) => console.error("error:" + err));
+                setIsLoading(false);
         }
     }, [movieId]);
 
@@ -37,6 +42,7 @@ export default function Detail() {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWNhODU3NDBjOWVlYzc4ZTU1ZTQ2NDA1MWE4NTRjNiIsInN1YiI6IjY1OWNhMTg3NTVjMWY0MDFhNDZlMzMxNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V7UIZD9fGetrKMwieqk-VeRqr2hl3tDlLO_VwMHDvC4'
             }
         };
+        setIsLoading(true);
         fetch(url, options)
             .then(res => res.json())
             .then(json => {
@@ -44,6 +50,7 @@ export default function Detail() {
                 // console.log(json.cast)
             })
             .catch(err => console.error('error:' + err));
+            setIsLoading(false);
     }, [movieId])
 
     const settings = {
@@ -57,6 +64,17 @@ export default function Detail() {
       };
     return (
         <Layout>
+            {isLoading ? 
+            <div className="flex flex-col items-center justify-center py-16">
+            <ClimbingBoxLoader
+            size={20}
+            color="#032541"
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            />
+            Loading...
+            </div>
+            : 
             <div className="w-full flex flex-col items-center">
                 <article className="w-full h-[600px] flex flex-col items-center">
                     {/* 띠 */}
@@ -79,7 +97,7 @@ export default function Detail() {
                                 {/* 포스터 */}
                                 {lists.poster_path && (
                                     <img className="w-[20%] object-contain" 
-                                    src={`https://image.tmdb.org/t/p/original${lists.poster_path}`} alt="포스터" />
+                                    src={`https://image.tmdb.org/t/p/original${lists?.poster_path}`} alt="포스터" />
                                 )}
                                 {/* 영화 제목, 줄거리 */}
                                 <div className="px-3 h-full flex flex-col justify-center space-y-4 text-[#9BB2C0]">
@@ -115,7 +133,7 @@ export default function Detail() {
                     </Slider>
                     </div>
                 </article>
-            </div>
+            </div>}
         </Layout>
     )
 }
