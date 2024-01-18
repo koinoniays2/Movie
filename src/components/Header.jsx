@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function NavPage() {
     return (
-    <div className="w-full h-[60px] bg-[#fcd985] flex justify-center">
+    <div className="sticky top-0 z-50 w-full h-[60px] bg-[#fcd985] flex justify-center">
         {/* 중앙정렬된 네비게이션 컨테이너 */}
         <div className="max-w-[1300px] w-full h-full flex justify-between px-8">
             {/* 1.왼쪽: 로고 + 메뉴 */}
