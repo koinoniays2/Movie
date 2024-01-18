@@ -64,7 +64,7 @@ export default function Movie() {
           </div>
         </div>
         {/* 리스트 */}
-        <div className="w-full h-[40vh] pt-9">
+        <div className="w-full h-[30vh] pt-9">
           <Slider {...settings}>
             {lists.map((item, index) => (
               <article key={index} className="w-full flex justify-center">

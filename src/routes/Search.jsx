@@ -44,7 +44,7 @@ export default function Search() {
     fetch(url, options)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
+        // console.log(json);
         setData(json.results);
       })
       .catch((err) => console.error("error:" + err));

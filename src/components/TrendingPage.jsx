@@ -31,7 +31,7 @@ export default function TrendingPage() {
       .then((res) => res.json())
       .then((json) => {
         setLists(json?.results); // 요청된 API의 결과 객체가 lists안에 set됨
-        console.log(json.results);
+        // console.log(json.results);
       })
       .catch((err) => console.error("error:" + err));
   }, [activeTab]); //activeTab이 바뀔때 마다 요청
@@ -69,7 +69,7 @@ export default function TrendingPage() {
           </div>
         </div>
         {/* 리스트 */}
-        <div className="w-full h-[40vh] pt-9">
+        <div className="w-full h-[30vh] pt-9">
           <Slider {...settings}>
               {lists.map((item, index) => (
                   <article key={index} className="w-full flex justify-center">

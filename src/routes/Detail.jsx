@@ -8,8 +8,10 @@ export default function Detail() {
     const { movieId } = useParams();
     const [lists, setLists] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [people, setPeople] = useState([]);
 
     useEffect(() => {
+        // 영화 디테일
         if (movieId) {
             const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
             const options = {
@@ -29,11 +31,7 @@ export default function Detail() {
                 .catch((err) => console.error("error:" + err));
             setIsLoading(false);
         }
-    }, [movieId]);
-
-    // 출연진
-    const [people, setPeople] = useState([]);
-    useEffect(() => {
+        // 출연진
         const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KR`;
         const options = {
             method: 'GET',
@@ -47,21 +45,21 @@ export default function Detail() {
             .then(res => res.json())
             .then(json => {
                 setPeople(json.cast);
-                // console.log(json.cast)
             })
             .catch(err => console.error('error:' + err));
         setIsLoading(false);
-    }, [movieId])
+    }, [movieId]);
 
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 6,
+        slidesToShow: (people || []).length >= 8 ? 8 : (people || []).length,
+        slidesToScroll: (people || []).length >= 8 ? 8 : (people || []).length,
         autoplay: true,
         autoplaySpeed: 2000,
     };
+    
     return (
         <Layout>
             {/* 로딩이미지 */}
@@ -80,7 +78,7 @@ export default function Detail() {
                 <div className="w-full flex flex-col items-center">
                     <article className="w-full h-[600px] flex flex-col items-center">
                         {/* 띠 */}
-                        <div className="w-[1300px] px-12 py-3 mt-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
+                        <div className="w-full text-center px-12 py-3 mt-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
                             <p>MOVIE</p>
                         </div>
                         {/* 소개 컨테이너 */}
@@ -115,8 +113,8 @@ export default function Detail() {
                         </div>
                     </article>
                     {/* 출연진 */}
-                    <article className="w-full h-[700px] flex flex-col items-center overflow-hidden">
-                        <div className="w-[1300px] px-12 py-3 my-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
+                    <article className="w-full h-[600px] flex flex-col items-center overflow-hidden">
+                        <div className="w-full text-center px-12 py-3 my-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
                             <p>출연진</p>
                         </div>
                         <div className="w-full">

@@ -35,8 +35,8 @@ export default function Detail() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: (lists.seasons || []).length >= 5 ? 5 : (lists.seasons || []).length,
-        slidesToScroll: 5,
+        slidesToShow: (lists.seasons || []).length >= 8 ? 8 : (lists.seasons || []).length,
+        slidesToScroll: (lists.seasons || []).length >= 8 ? 8 : (lists.seasons || []).length,
         autoplay: true,
         autoplaySpeed: 2000,
     };
@@ -58,7 +58,7 @@ export default function Detail() {
                 <div className="w-full flex flex-col items-center">
                     <article className="w-full h-[600px] flex flex-col items-center">
                         {/* 띠 */}
-                        <div className="w-[1300px] px-12 py-3 mt-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
+                        <div className="w-full text-center px-12 py-3 mt-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
                             <p>TV</p>
                         </div>
                         {/* 소개 컨테이너 */}
@@ -99,8 +99,8 @@ export default function Detail() {
                         </div>
                     </article>
                     {/* 시즌 */}
-                    <article className="w-full h-[700px] flex flex-col items-center overflow-hidden">
-                        <div className="w-[1300px] px-12 py-3 my-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
+                    <article className="w-full h-[500px] flex flex-col items-center overflow-hidden">
+                        <div className="w-full text-center px-12 py-3 my-8 text-2xl font-bold text-[#823f12] bg-[#dde5d6]">
                             <p>시즌</p>
                         </div>
                         <div className="w-full">

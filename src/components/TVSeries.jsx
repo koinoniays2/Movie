@@ -64,7 +64,7 @@ export default function Movie() {
                     </div>
                 </div>
                 {/* 리스트 */}
-                <div className="w-full pt-9 mb-8">
+                <div className="w-full pt-9 mb-[100px]">
                     <Slider {...settings}>
                         {lists.map((item) => (
                             <article key={item.id} className="w-full flex justify-center">
