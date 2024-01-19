@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import { useColorMode } from "@chakra-ui/react";
+import { FaUser } from "react-icons/fa6";
 
 export default function Header() {
   const [scroll, setScroll] = useState(true);
@@ -72,7 +73,7 @@ export default function Header() {
           </div>
           {/* USER */}
           <div className="w-8 h-8 bg-[#9bb2c0] rounded-full text-white flex justify-center items-center">
-            H
+            <FaUser />
           </div>
           {/* 검색 아이콘 */}
           <div className="text-[#353535]">
