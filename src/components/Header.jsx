@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { BiPlusMedical } from "react-icons/bi";
-import { FaBell, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { MdLightMode } from "react-icons/md";
+import { MdDarkMode } from "react-icons/md";
+import { useColorMode } from "@chakra-ui/react";
 
 export default function Header() {
   const [scroll, setScroll] = useState(true);
@@ -15,6 +18,7 @@ export default function Header() {
       setScroll(true);
     }
   });
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <div
       className={`sticky top-0 z-50 ${
@@ -62,9 +66,9 @@ export default function Header() {
           >
             EN
           </div>
-          {/* 벨 아이콘 */}
-          <div className="text-[#353535]">
-            <FaBell />
+          {/* 다크모드 */}
+          <div onClick={toggleColorMode} className="text-[#353535] cursor-pointer">
+            {colorMode === "light" ? <MdDarkMode className="w-6 h-6"/> : <MdLightMode className="w-6 h-6" />}
           </div>
           {/* USER */}
           <div className="w-8 h-8 bg-[#9bb2c0] rounded-full text-white flex justify-center items-center">
